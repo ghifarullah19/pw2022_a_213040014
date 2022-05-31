@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if (!(isset($_SESSION["login"]))) {
+  header("Location: login.php");
+  exit;
+}
+
 require 'functions.php';
 
 // ambil data di URL
@@ -87,7 +94,7 @@ if (isset($_POST["kembali"])) {
             >
             <a class="nav-item nav-link" href="menu.php">Menu</a>
             <a class="nav-item nav-link" href="contact.php">Contact</a>
-            <a class="nav-item btn btn-primary tombol" href="#">Login</a>
+            <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
@@ -137,10 +144,17 @@ if (isset($_POST["kembali"])) {
                 </div>
                 
                 <div class="mb-3">
-                  <label for="gambar_series" class="form-label">Gambar</label>
-                  <img src="img/<?= $seri['gambar_series']; ?>" width="40"> <br>
-                  <input type="file" class="form-control" id="gambar_series" name="gambar_series"
-                    >
+                  <img src="img/<?= $seri['gambar_series']; ?>" width="100"> <br>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input form-control" id="gambar_series" name="gambar_series" 
+                      aria-describedby="inputGroupFileAddon01">
+                      <label class="custom-file-label form-label" for="gambar_series">Pilih gambar</label>
+                    </div>
+                  </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary" name="submit">Ubah Data Film</button>

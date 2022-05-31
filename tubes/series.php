@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if (!(isset($_SESSION["login"]))) {
+  header("Location: login.php");
+  exit;
+}
+
 require 'functions.php';
 $series = query("SELECT * FROM series");
 
@@ -59,7 +66,7 @@ if (isset($_POST["cari_series"])) {
             >
             <a class="nav-item nav-link" href="collection.php">Collection</a>
             <a class="nav-item nav-link" href="contact.php">Contact</a>
-            <a class="nav-item btn btn-primary tombol" href="#">Login</a>
+            <a class="nav-item btn btn-primary tombol" href="logout.php">logout</a>
           </div>
         </div>
       </div>
