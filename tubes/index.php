@@ -9,7 +9,11 @@ if (!(isset($_SESSION["login"]))) {
 }
 
 $movie_series_terbaik = query("SELECT * 
-FROM movie_series_terbaik;");
+FROM movie
+NATURAL JOIN series
+WHERE id_movie = id_series
+AND id_movie < 3
+AND id_series <= 2");
 ?>
 
 <!DOCTYPE html>
@@ -145,13 +149,25 @@ FROM movie_series_terbaik;");
             <h2 class="highlight-title text-center" data-aos="fade-down">Highlight</h2>
             <div class="card-deck">
               <?php foreach ($movie_series_terbaik as $ms) { ?>
-                <div class="card mx-auto"  style="max-width: 300px;">
-                  <img src="img/<?= $ms["gambar_terbaik"]; ?>" class="card-img-top" 
+                <div class="card mx-auto"  style="max-width: 250px;">
+                  <img src="img/<?= $ms["gambar_movie"]; ?>" class="card-img-top" 
                   alt="gambar-movie" data-aos="fade-right"/>
                   <div class="card-body">
-                    <h5 class="card-title"><?= $ms["judul_terbaik"]; ?></h5>
-                    <p >
-                      <a href="<?= $ms["link_terbaik"]; ?>" class="card-text">View</a>
+                    <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
+                    <p>
+                      <a href="<?= $ms["link_movie"]; ?>" class="card-text">View</a>
+                    </p>
+                  </div>
+                </div>
+              <?php } ?>
+              <?php foreach ($movie_series_terbaik as $ss) { ?>
+                <div class="card mx-auto"  style="max-width: 250px;">
+                  <img src="img/<?= $ss["gambar_series"]; ?>" class="card-img-top" 
+                  alt="gambar-series" data-aos="fade-right"/>
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
+                    <p>
+                      <a href="<?= $ss["link_series"]; ?>" class="card-text">View</a>
                     </p>
                   </div>
                 </div>

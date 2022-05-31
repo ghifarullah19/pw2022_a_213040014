@@ -7,7 +7,12 @@ if (!(isset($_SESSION["login"]))) {
 }
 require 'functions.php';
 
-$terbaik = query("SELECT * FROM movie_series_terbaik");
+$terbaik = query("SELECT * 
+FROM movie 
+NATURAL JOIN series 
+WHERE id_movie = id_series 
+AND id_movie < 6 
+AND id_series < 6");
 
 // tombol cari ditekan
 if (isset($_POST["cari"])) {
@@ -103,13 +108,28 @@ if (isset($_POST["kembali"])) {
                   <tr class="align-middle">
                     <th scope="row"><?php echo $no++; ?></th>
                     <td>
-                      <img src="img/<?php echo $tbk["gambar_terbaik"]; ?>" width="70">
+                      <img src="img/<?php echo $tbk["gambar_movie"]; ?>" width="70">
                     </td>
-                    <td class="align-middle"><?php echo $tbk["judul_terbaik"]; ?></td>
-                    <td class="align-middle"><a href="<?php echo $tbk["link_terbaik"]; ?>" 
+                    <td class="align-middle"><?php echo $tbk["judul_movie"]; ?></td>
+                    <td class="align-middle"><a href="<?php echo $tbk["link_movie"]; ?>" 
                     class="btn badge btn-outline-success btn-block" role="button" style="font-size: 16px;">Tonton</a></td>
                     <td class="align-middle">
-                      <a href="ubah_terbaik.php?id=<?= $tbk["id_terbaik"]; ?>" class="btn badge btn-outline-info btn-block" 
+                      <a href="ubah_terbaik.php?id=<?= $tbk["id_movie"]; ?>" class="btn badge btn-outline-info btn-block" 
+                      role="button" style="font-size: 16px;">Ubah</a>
+                    </td>
+                  </tr>
+                <?php } ?>
+                <?php foreach ($terbaik as $tbk) { ?>
+                  <tr class="align-middle">
+                    <th scope="row"><?php echo $no++; ?></th>
+                    <td>
+                      <img src="img/<?php echo $tbk["gambar_series"]; ?>" width="70">
+                    </td>
+                    <td class="align-middle"><?php echo $tbk["judul_series"]; ?></td>
+                    <td class="align-middle"><a href="<?php echo $tbk["link_series"]; ?>" 
+                    class="btn badge btn-outline-success btn-block" role="button" style="font-size: 16px;">Tonton</a></td>
+                    <td class="align-middle">
+                      <a href="ubah_terbaik.php?id=<?= $tbk["id_series"]; ?>" class="btn badge btn-outline-info btn-block" 
                       role="button" style="font-size: 16px;">Ubah</a>
                     </td>
                   </tr>
