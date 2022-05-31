@@ -1,10 +1,19 @@
 <?php 
 session_start();
 
+require 'functions.php';
+
 if (!(isset($_SESSION["login"]))) {
   header("Location: login.php");
   exit;
 }
+
+$movie_series = query("SELECT * 
+FROM movie 
+NATURAL JOIN series 
+WHERE id_movie = id_series 
+AND id_movie <= 3 
+AND id_series <= 3;");
 
 ?>
 
@@ -76,66 +85,34 @@ if (!(isset($_SESSION["login"]))) {
             <!-- Film -->
             <h2 class="side-title"><a href="film.php">Film</a></h2>
             <div class="card-deck">
-              <div class="card">
-                <img class="card-img-top" src="img/1.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This is a longer card with supporting text 
-                    below as a natural lead-in to additional content. 
-                    This content is a little bit longer.</a>
+              <?php foreach ($movie_series as $ms) { ?>
+                <div class="card mx-auto" style="max-width: 300px;">
+                  <img class="card-img-top" src="img/<?= $ms["gambar_movie"]; ?>" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
+                    <a href="#" class="card-text">This is a longer card with supporting text 
+                      below as a natural lead-in to additional content. 
+                      This content is a little bit longer.</a>
+                  </div>
                 </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/2.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This card has supporting text below 
-                    as a natural lead-in to additional content.</a>
-                </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/3.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This is a wider card with supporting 
-                    text below as a natural lead-in to additional content. 
-                    This card has even longer content than the first to show 
-                    that equal height action.</a>
-                </div>
-              </div>
+              <?php } ?>
             </div>
             <!-- Akhir Film -->
 
             <!-- Series -->
             <h2 class="side-title"><a href="series.php">Series</a></h2>
             <div class="card-deck">
-              <div class="card">
-                <img class="card-img-top" src="img/1.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This is a longer card with supporting text 
-                    below as a natural lead-in to additional content. 
-                    This content is a little bit longer.</a>
+              <?php foreach ($movie_series as $ss) { ?>
+                <div class="card mx-auto" style="max-width: 300px;">
+                  <img class="card-img-top" src="img/<?= $ss["gambar_series"]; ?>" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
+                    <a href="#" class="card-text">This is a longer card with supporting text 
+                      below as a natural lead-in to additional content. 
+                      This content is a little bit longer.</a>
+                  </div>
                 </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/2.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This card has supporting text below 
-                    as a natural lead-in to additional content.</a>
-                </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/3.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <a href="#" class="card-text">This is a wider card with supporting 
-                    text below as a natural lead-in to additional content. 
-                    This card has even longer content than the first to show 
-                    that equal height action.</a>
-                </div>
-              </div>
+              <?php } ?>
             </div>
             <!-- Akhir Series -->
           </div>

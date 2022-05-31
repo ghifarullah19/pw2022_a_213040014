@@ -1,11 +1,19 @@
 <?php
 session_start();
 
+require 'functions.php';
+
 if (!(isset($_SESSION["login"]))) {
   header("Location: login.php");
   exit;
 }
 
+$movie_series = query("SELECT * 
+FROM movie 
+NATURAL JOIN series 
+WHERE id_movie = id_series 
+AND id_movie < 3 
+AND id_series < 3;");
 ?>
 
 <!DOCTYPE html>
@@ -140,27 +148,32 @@ if (!(isset($_SESSION["login"]))) {
           <div class="container ">
             <h2 class="highlight-title text-center" data-aos="fade-down">Highlight</h2>
             <div class="card-deck">
-              <div class="card">
-                <img src="img/1.jpg" class="card-img-top" alt="trufle-cake" data-aos="fade-right"/>
-                <div class="card-body">
-                  <h5 class="card-title">Spiderman: No Way Home</h5>
-                  <p >
-                    <a href="" class="card-text">View</a>
-                  </p>
-                  
+              <?php foreach ($movie_series as $ms) { ?>
+                <div class="card"  style="max-width: 300px;">
+                  <img src="img/<?= $ms["gambar_movie"]; ?>" class="card-img-top" 
+                  alt="trufle-cake" data-aos="fade-right"/>
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
+                    <p >
+                      <a href="" class="card-text">View</a>
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="card">
-                <img src="img/2.jpg" class="card-img-top" alt="cheese-cake" data-aos="fade-up"/>
-                <div class="card-body">
-                  <h5 class="card-title">The Batman</h5>
-                  <p >
-                    <a href="" class="card-text">View</a>
-                  </p>
-                 
+              <?php } ?>
+              <?php foreach ($movie_series as $ss) { ?>
+                <div class="card" style="max-width: 300px;">
+                  <img src="img/<?= $ss["gambar_series"]; ?>" class="card-img-top" 
+                  alt="gambar-series" data-aos="fade-right"/>
+                  <div class="card-body">
+                    <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
+                    <p >
+                      <a href="" class="card-text">View</a>
+                    </p>
+                    
+                  </div>
                 </div>
-              </div>
-              <div class="card">
+              <?php } ?>
+              <!-- <div class="card">
                 <img src="img/3.jpg" class="card-img-top" alt="trufle" data-aos="fade-left"/>
                 <div class="card-body">
                   <h5 class="card-title">Moon Knight</h5>
@@ -169,7 +182,7 @@ if (!(isset($_SESSION["login"]))) {
                   </p>
                   
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
