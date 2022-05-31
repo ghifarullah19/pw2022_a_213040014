@@ -128,6 +128,12 @@ if (isset($_POST["kembali"])) {
                   <input type="text" class="form-control" id="aktor_movie" name="aktor_movie" 
                    value="<?= $mov["aktor_movie"]; ?>">
                 </div>
+
+                <div class="mb-3">
+                  <label for="link_movie" class="form-label">Link</label>
+                  <input type="text" class="form-control" id="link_movie" name="link_movie" 
+                   value="<?= $mov["link_movie"]; ?>">
+                </div>
                 
                 <div class="mb-3">
                   <label for="tahun_rilis_movie" class="form-label">Tahun Rilis</label>

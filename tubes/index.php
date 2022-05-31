@@ -8,12 +8,8 @@ if (!(isset($_SESSION["login"]))) {
   exit;
 }
 
-$movie_series = query("SELECT * 
-FROM movie 
-NATURAL JOIN series 
-WHERE id_movie = id_series 
-AND id_movie < 3 
-AND id_series < 3;");
+$movie_series_terbaik = query("SELECT * 
+FROM movie_series_terbaik;");
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +65,7 @@ AND id_series < 3;");
               >Home <span class="sr-only">(current)</span></a
             >
             <a class="nav-item nav-link" href="#about">About</a>
-            <a class="nav-item nav-link" href="#highlight">Highlight</a>
+            <a class="nav-item nav-link" href="highlight.php">Highlight</a>
             <a class="nav-item nav-link" href="collection.php">Collection</a>
             <a class="nav-item nav-link" href="contact.php">Contact</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
@@ -148,41 +144,18 @@ AND id_series < 3;");
           <div class="container ">
             <h2 class="highlight-title text-center" data-aos="fade-down">Highlight</h2>
             <div class="card-deck">
-              <?php foreach ($movie_series as $ms) { ?>
-                <div class="card"  style="max-width: 300px;">
-                  <img src="img/<?= $ms["gambar_movie"]; ?>" class="card-img-top" 
-                  alt="trufle-cake" data-aos="fade-right"/>
+              <?php foreach ($movie_series_terbaik as $ms) { ?>
+                <div class="card mx-auto"  style="max-width: 300px;">
+                  <img src="img/<?= $ms["gambar_terbaik"]; ?>" class="card-img-top" 
+                  alt="gambar-movie" data-aos="fade-right"/>
                   <div class="card-body">
-                    <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
+                    <h5 class="card-title"><?= $ms["judul_terbaik"]; ?></h5>
                     <p >
-                      <a href="" class="card-text">View</a>
+                      <a href="<?= $ms["link_terbaik"]; ?>" class="card-text">View</a>
                     </p>
                   </div>
                 </div>
               <?php } ?>
-              <?php foreach ($movie_series as $ss) { ?>
-                <div class="card" style="max-width: 300px;">
-                  <img src="img/<?= $ss["gambar_series"]; ?>" class="card-img-top" 
-                  alt="gambar-series" data-aos="fade-right"/>
-                  <div class="card-body">
-                    <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
-                    <p >
-                      <a href="" class="card-text">View</a>
-                    </p>
-                    
-                  </div>
-                </div>
-              <?php } ?>
-              <!-- <div class="card">
-                <img src="img/3.jpg" class="card-img-top" alt="trufle" data-aos="fade-left"/>
-                <div class="card-body">
-                  <h5 class="card-title">Moon Knight</h5>
-                  <p >
-                    <a href="" class="card-text">View</a>
-                  </p>
-                  
-                </div>
-              </div> -->
             </div>
           </div>
         </div>

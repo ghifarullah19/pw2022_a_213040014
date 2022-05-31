@@ -89,7 +89,10 @@ if (isset($_POST["login"])) {
   <?php endif; ?>
 
   <div class="container">
-    <div class="card border-primary mx-auto rounded" style="max-width: 32rem; height: 28rem; margin-top: 100px;">
+    <div class="card border-primary mx-auto rounded" 
+    style="max-width: 32rem; height: 28rem; margin-top: 100px;
+    /*box-shadow: 10px 10px #888888;*/"
+    >
       <div class="card-header bg-transparent border-primary">
         <h1 class="text-center">LOGIN</h1>
       </div>

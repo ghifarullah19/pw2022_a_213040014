@@ -131,6 +131,12 @@ if (isset($_POST["kembali"])) {
                 </div>
                 
                 <div class="mb-3">
+                  <label for="link_series" class="form-label">Link</label>
+                  <input type="text" class="form-control" id="link_series" name="link_series" 
+                   value="<?= $seri["link_series"]; ?>">
+                </div>
+                
+                <div class="mb-3">
                   <label for="tahun_rilis_series" class="form-label">Tahun Rilis</label>
                   <input type="number" class="form-control" id="tahun_rilis_series" name="tahun_rilis_series" 
                   maxlength="4" placeholder="Contoh: 2022" 

@@ -9,7 +9,7 @@ if (!(isset($_SESSION["login"]))) {
 }
 
 $movie_series = query("SELECT * 
-FROM movie 
+FROM movie
 NATURAL JOIN series 
 WHERE id_movie = id_series 
 AND id_movie <= 3 
@@ -90,9 +90,7 @@ AND id_series <= 3;");
                   <img class="card-img-top" src="img/<?= $ms["gambar_movie"]; ?>" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
-                    <a href="#" class="card-text">This is a longer card with supporting text 
-                      below as a natural lead-in to additional content. 
-                      This content is a little bit longer.</a>
+                    <a href="<?= $ms["link_movie"]; ?>" class="card-text">Tonton</a>
                   </div>
                 </div>
               <?php } ?>
@@ -107,9 +105,7 @@ AND id_series <= 3;");
                   <img class="card-img-top" src="img/<?= $ss["gambar_series"]; ?>" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
-                    <a href="#" class="card-text">This is a longer card with supporting text 
-                      below as a natural lead-in to additional content. 
-                      This content is a little bit longer.</a>
+                    <a href="<?= $ss["link_series"]; ?>" class="card-text">Tonton</a>
                   </div>
                 </div>
               <?php } ?>

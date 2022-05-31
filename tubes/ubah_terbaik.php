@@ -5,14 +5,41 @@ if (!(isset($_SESSION["login"]))) {
   header("Location: login.php");
   exit;
 }
-
 require 'functions.php';
-$series = query("SELECT * FROM series");
 
-// tombol cari ditekan
-if (isset($_POST["cari_series"])) {
-  $series = cari_series($_POST["keyword"]);
+// ambil data di URL
+$id_terbaik = $_GET["id"];
+// query data mahasiswa berdasarkan id
+$tbk = query("SELECT * FROM movie_series_terbaik WHERE id_terbaik = $id_terbaik")[0];
+
+// cek apakah tombol submit sudah ditekan atau belum
+if (isset($_POST["submit"])) {
+  
+  // cek apakah data berhasil di ubah atau tidak
+  if (ubah_terbaik($_POST) > 0) {
+    echo "
+      <script>
+        alert('Data Berhasil Diubah!');
+        document.location.href = 'index.php';
+      </script>
+    ";
+  } else {
+    echo "
+    <script>
+      alert('Data Gagal Diubah!');
+      document.location.href = 'highlight.php';
+    </script>
+  ";
+  }
 }
+
+// Klik tombol kembali
+if (isset($_POST["kembali"])) {
+  echo "<script>
+          document.location.href = 'highlight.php';
+        </script>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +70,7 @@ if (isset($_POST["cari_series"])) {
   </head>
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top" style="z-index: 5;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
       <div class="container">
         <a class="navbar-brand" href="#"
           ><img src="img/logo.jpg" alt="" class="logo"
@@ -66,100 +93,60 @@ if (isset($_POST["cari_series"])) {
             >
             <a class="nav-item nav-link" href="collection.php">Collection</a>
             <a class="nav-item nav-link" href="contact.php">Contact</a>
-            <a class="nav-item btn btn-primary tombol" href="logout.php">logout</a>
+            <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
     </nav>
     <!-- akhir navbar -->
-     
 
-      <!-- collection -->
-      <section id="film-1">
-        <div class="film-1">
-          <div class="container">
-            <h2 class="film-title text-center">Series</h2>
-            
-            <div class="row mb-3">
-              <div class="col-7">
-                <a href="tambah_series.php" class="btn btn-primary">Tambah Data Series</a>
-              </div>
-              <div class="col-5">
-                <form action="" method="POST">
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="keyword" size="40" 
-                    placeholder="Masukan keyword pencarian"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="input-group-append" >
-                      <button type="submit" name="cari_series" class="btn btn-info" 
-                      >Cari</button>
+        <section id="film-1">
+          <div class="film-1">
+            <div class="container">
+              <h2 class="film-title text-center">Ubah Data Film</h2>
+              
+              <!-- Input Data Movie -->
+              <form action="" method="post" autocomplete="off"  enctype="multipart/form-data">
+                
+              <input type="hidden" name="id_terbaik" value="<?= $tbk["id_terbaik"]; ?>">
+              <input type="hidden" name="gambar_terbaik" value="<?= $tbk["gambar_terbaik"]; ?>">
+
+                <div class="mb-3">
+                  <label for="judul_terbaik" class="form-label">Judul</label>
+                  <input type="text" class="form-control" id="judul_terbaik" name="judul_terbaik" 
+                   value="<?= $tbk["judul_terbaik"]; ?>">
+                </div>
+                
+                <div class="mb-3">
+                  <label for="link_terbaik" class="form-label">Link</label>
+                  <input type="text" class="form-control" id="link_terbaik" name="link_terbaik" 
+                   value="<?= $tbk["link_terbaik"]; ?>">
+                </div>
+                
+                <div class="mb-3 mt-2">
+                  <img src="img/<?= $tbk['gambar_terbaik']; ?>" width="200"> <br>
+                  <div class="input-group mb-3 mt-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="gambar_terbaik" name="gambar_terbaik" 
+                      aria-describedby="inputGroupFileAddon01">
+                      <label class="custom-file-label form-label" for="gambar_terbaik">Pilih gambar</label>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+
+                
+
+                <button type="submit" class="btn btn-primary" name="submit">Ubah Data</button>
+                <button type="submit" class="btn btn-primary" name="kembali">Kembali ke Data Highlight</button>
+                
+              </form>
+              <!-- Akhir Input Data Movie -->
             </div>
-            
-            <!-- Input Data Movie -->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Gambar</th>
-                  <th scope="col">Judul</th>
-                  <th scope="col">Sutradara</th>
-                  <th scope="col">Aktor</th>
-                  <th scope="col">Link</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1; ?>
-                <?php foreach ($series as $seri) { ?>
-                  <tr class="align-middle">
-                    <th scope="row"><?php echo $no++; ?></th>
-                    <td>
-                      <img src="img/<?php echo $seri["gambar_series"]; ?>" width="100">
-                    </td>
-                    <td class="align-middle"><?php echo $seri["judul_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["sutradara_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["aktor_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["link_series"]; ?></td>
-                    <td class="align-middle">
-                      <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge bg-warning">Ubah</a> |
-                      <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-            <!-- Akhir Input Data Movie -->
-
-            <a href="collection.php" class="btn btn-primary">Kembali</a>
-            
-            <!--
-            <?php foreach ($movie as $mov) { ?>
-              <div class="card-deck">
-                <div class="card">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <img class="card-img-top" src="img/<?php echo $mov["gambar_movie"]; ?>" alt="Card image cap">
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><?php echo $mov["judul_movie"]; ?></h5>
-                        <p class="card-text"><?php echo $mov["sutradara_movie"]; ?></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            <?php } ?>
-            -->
           </div>
-        </div>
-      </section>
-      <!-- akhir collection -->
-      
+        </section>
         <!-- footer -->
         <footer class="bt-footer bg-dark position-relative text-white p-4 p-lg-5">
             <div class="row">
@@ -187,10 +174,10 @@ if (isset($_POST["cari_series"])) {
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="film.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Film</a>
-                    </div>
+                      <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series</a>
+                      </div>
                   </div>
-                  
-      
+                        
                   <div class="col">
                     <h6>
                       <a href="contact.php" class="mb-2">Contact Us</a>
@@ -225,5 +212,3 @@ if (isset($_POST["cari_series"])) {
     ></script>
   </body>
 </html>
-
-

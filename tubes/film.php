@@ -107,8 +107,7 @@ if (isset($_POST["cari"])) {
                   <th scope="col">Judul</th>
                   <th scope="col">Sutradara</th>
                   <th scope="col">Aktor</th>
-                  <th scope="col">Tahun Rilis</th>
-                  <th scope="col">Studio</th>
+                  <th scope="col">Link</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -123,8 +122,7 @@ if (isset($_POST["cari"])) {
                     <td class="align-middle"><?php echo $mov["judul_movie"]; ?></td>
                     <td class="align-middle"><?php echo $mov["sutradara_movie"]; ?></td>
                     <td class="align-middle"><?php echo $mov["aktor_movie"]; ?></td>
-                    <td class="align-middle"><?php echo $mov["tahun_rilis_movie"]; ?></td>
-                    <td class="align-middle"><?php echo $mov["studio_movie"]; ?></td>
+                    <td class="align-middle"><?php echo $mov["link_movie"]; ?></td>
                     <td class="align-middle">
                       <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-warning">Ubah</a> |
                       <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
@@ -136,26 +134,6 @@ if (isset($_POST["cari"])) {
             <!-- Akhir Input Data Movie -->
 
             <a href="collection.php" class="btn btn-primary">Kembali</a>
-            
-            <!--
-            <?php foreach ($movie as $mov) { ?>
-              <div class="card-deck">
-                <div class="card">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <img class="card-img-top" src="img/<?php echo $mov["gambar_movie"]; ?>" alt="Card image cap">
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><?php echo $mov["judul_movie"]; ?></h5>
-                        <p class="card-text"><?php echo $mov["sutradara_movie"]; ?></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            <?php } ?>
-            -->
           </div>
         </div>
       </section>

@@ -28,6 +28,7 @@ function tambah($data) {
   $jdl_f = htmlspecialchars($data['judul_movie']);
   $str_f = htmlspecialchars($data['sutradara_movie']);
   $akt_f = htmlspecialchars($data['aktor_movie']);
+  $lf = htmlspecialchars($data['link_movie']);
   $th_f = htmlspecialchars($data['tahun_rilis_movie']);
   $sf = htmlspecialchars($data['studio_movie']);
   
@@ -41,7 +42,7 @@ function tambah($data) {
   $query = "INSERT INTO 
   movie 
   VALUES 
-  (null, '$jdl_f', '$str_f', '$akt_f', '$th_f', '$sf', '$gbr_f')";
+  (null, '$jdl_f', '$str_f', '$akt_f', '$lf', '$th_f', '$sf', '$gbr_f')";
   
   mysqli_query($conn, $query) or die(mysqli_error($conn));
 
@@ -108,6 +109,7 @@ function ubah($data) {
   $jdl_f = htmlspecialchars($data['judul_movie']);
   $str_f = htmlspecialchars($data['sutradara_movie']);
   $akt_f = htmlspecialchars($data['aktor_movie']);
+  $lf = htmlspecialchars($data['link_movie']);
   $th_f = htmlspecialchars($data['tahun_rilis_movie']);
   $sf = htmlspecialchars($data['studio_movie']);
   $gbr_f_lama = htmlspecialchars($data["gambar_movie"]);
@@ -124,6 +126,7 @@ function ubah($data) {
               judul_movie = '$jdl_f',
               sutradara_movie = '$str_f',
               aktor_movie = '$akt_f',
+              link_movie = '$lf',
               tahun_rilis_movie = '$th_f',
               studio_movie = '$sf',
               gambar_movie = '$gbr_f'
@@ -140,6 +143,7 @@ function cari($keyword) {
             judul_movie LIKE '%$keyword%' OR
             sutradara_movie LIKE '%$keyword%' OR
             aktor_movie LIKE '%$keyword%' OR 
+            link_movie LIKE '%$keyword%' OR 
             tahun_rilis_movie LIKE '%$keyword%' OR
             studio_movie LIKE '%$keyword%'";
  return query($query);
@@ -153,6 +157,7 @@ function tambah_series($data) {
   $jdl_s = htmlspecialchars($data['judul_series']);
   $str_s = htmlspecialchars($data['sutradara_series']);
   $akt_s = htmlspecialchars($data['aktor_series']);
+  $ls = htmlspecialchars($data['link_series']);
   $th_s = htmlspecialchars($data['tahun_rilis_series']);
   $ss = htmlspecialchars($data['studio_series']);
   
@@ -166,7 +171,7 @@ function tambah_series($data) {
   $query = "INSERT INTO 
   series
   VALUES 
-  (null, '$jdl_s', '$str_s', '$akt_s', '$th_s', '$ss', '$gbr_s')";
+  (null, '$jdl_s', '$str_s', '$akt_s', '$ls', '$th_s', '$ss', '$gbr_s')";
   
   mysqli_query($conn, $query) or die(mysqli_error($conn));
 
@@ -233,6 +238,7 @@ function ubah_series($data) {
   $jdl_s = htmlspecialchars($data['judul_series']);
   $str_s = htmlspecialchars($data['sutradara_series']);
   $akt_s = htmlspecialchars($data['aktor_series']);
+  $ls = htmlspecialchars($data['link_series']);
   $th_s = htmlspecialchars($data['tahun_rilis_series']);
   $ss = htmlspecialchars($data['studio_series']);
   $gbr_s_lama = htmlspecialchars($data["gambar_series"]);
@@ -249,6 +255,7 @@ function ubah_series($data) {
               judul_series = '$jdl_s',
               sutradara_series = '$str_s',
               aktor_series = '$akt_s',
+              link_series = '$ls',
               tahun_rilis_series = '$th_s',
               studio_series = '$ss',
               gambar_series = '$gbr_s'
@@ -265,9 +272,85 @@ function cari_series($keyword) {
             judul_series LIKE '%$keyword%' OR
             sutradara_series LIKE '%$keyword%' OR
             aktor_series LIKE '%$keyword%' OR 
+            link_series LIKE '%$keyword%' OR 
             tahun_rilis_series LIKE '%$keyword%' OR
             studio_series LIKE '%$keyword%'";
  return query($query);
+}
+
+// upload relasi antar table
+function upload_terbaik() {
+  $namaFile = $_FILES['gambar_terbaik']['name'];
+  $ukuranFile = $_FILES['gambar_terbaik']['size'];
+  $error = $_FILES['gambar_terbaik']['error'];
+  $tmpName = $_FILES['gambar_terbaik']['tmp_name'];
+
+  // cek apakah tidak ada gambar yang diupload
+  if ($error === 4) {
+    echo "<script>
+          alert('Pilih gambar terlebih dahulu');
+          </script>
+          ";
+    return false;
+  }
+
+  // cek apakah yang diupload adalah gambar
+  $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+  $ekstensiGambar = explode('.', $namaFile);
+  $ekstensiGambar = strtolower(end($ekstensiGambar));
+  if (!(in_array($ekstensiGambar, $ekstensiGambarValid))) {
+    echo "<script>
+          alert('Anda bukan mengupload gambar!');
+          </script>
+          ";
+    return false;
+  }
+
+  // cek jika ukurannya terlalu besar 
+  if ($ukuranFile > 5000000) {
+    echo "<script>
+          alert('Ukuran gambar terlalu besar!');
+          </script>
+          ";
+    return false;
+  }
+
+  // lolos pengecekan, gambar siap di upload
+  // generate nama gambar baru
+  $namaFileBaru = uniqid();
+  $namaFileBaru .= ".";
+  $namaFileBaru .= $ekstensiGambar; 
+
+  move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+  return $namaFileBaru;
+}
+
+// ubah relasi antar table
+function ubah_terbaik($data) {
+  $conn = koneksi();
+
+  // ambil data dari tiap elemen dalam form
+  $id = $data["id_terbaik"];
+  $jdl_t = htmlspecialchars($data['judul_terbaik']);
+  $lt = htmlspecialchars($data['link_terbaik']);
+  $gbr_t_lama = htmlspecialchars($data["gambar_terbaik"]);
+  
+  // cek apakah user pilih gambar baru atau tidak
+  if ($_FILES['gambar_terbaik']['error'] === 4) {
+    $gbr_t = $gbr_t_lama;
+  } else {
+    $gbr_t = upload_terbaik();
+  }
+
+  // query insert data
+  $query = "UPDATE movie_series_terbaik SET
+              judul_terbaik = '$jdl_t',
+              link_terbaik = '$lt',
+              gambar_terbaik = '$gbr_t'
+            WHERE id_terbaik = $id";
+  mysqli_query($conn, $query);
+
+  return mysqli_affected_rows($conn);
 }
 
 // registrasi
