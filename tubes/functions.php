@@ -149,6 +149,14 @@ function cari($keyword) {
  return query($query);
 }
 
+function urut($keypad) {
+  $query = "SELECT * 
+            FROM movie
+            WHERE id_movie = $keypad
+            ORDER BY $keypad DESC";
+ return query($query);
+}
+
 // Tambah Data Series
 function tambah_series($data) {
   $conn = koneksi();
