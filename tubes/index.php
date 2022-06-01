@@ -66,12 +66,12 @@ AND id_series <= 2");
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link active" href="#home"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama<span class="sr-only">(current)</span></a
             >
-            <a class="nav-item nav-link" href="#about">About</a>
-            <a class="nav-item nav-link" href="highlight.php">Highlight</a>
-            <a class="nav-item nav-link" href="collection.php">Collection</a>
-            <a class="nav-item nav-link" href="contact.php">Contact</a>
+            <a class="nav-item nav-link" href="#about">Tentang</a>
+            <a class="nav-item nav-link" href="#highlight">Sorotan</a>
+            <a class="nav-item nav-link" href="collection.php">Koleksi</a>
+            <a class="nav-item nav-link" href="contact.php">Kontak</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
@@ -97,7 +97,7 @@ AND id_series <= 2");
       <section id="about">
         <div class="container">
           <div class="about text-center">
-            <h2 class="about-title" data-aos="fade-down">About Us</h2>
+            <h2 class="about-title" data-aos="fade-down">Tentang Kami</h2>
             <div class="row">
               <div class="col">
                 <div class="about-lutfi w-100" data-aos="fade-up">
@@ -146,7 +146,7 @@ AND id_series <= 2");
       <section id="highlight">
         <div class="highlight ">
           <div class="container ">
-            <h2 class="highlight-title text-center" data-aos="fade-down">Highlight</h2>
+            <h2 class="highlight-title text-center" data-aos="fade-down">Sorotan</h2>
             <div class="card-deck">
               <?php foreach ($movie_series_terbaik as $ms) { ?>
                 <div class="card mx-auto"  style="max-width: 250px;">
@@ -155,7 +155,7 @@ AND id_series <= 2");
                   <div class="card-body">
                     <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
                     <p>
-                      <a href="<?= $ms["link_movie"]; ?>" class="card-text">View</a>
+                      <a href="<?= $ms["link_movie"]; ?>" class="card-text">Tonton</a>
                     </p>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ AND id_series <= 2");
                   <div class="card-body">
                     <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
                     <p>
-                      <a href="<?= $ss["link_series"]; ?>" class="card-text">View</a>
+                      <a href="<?= $ss["link_series"]; ?>" class="card-text">Tonton</a>
                     </p>
                   </div>
                 </div>
@@ -203,16 +203,16 @@ AND id_series <= 2");
           <div class="row">
             <div class="col">
               <h6 >
-                <a href="collection.php" class="mb-2">Collection</a>
+                <a href="collection.php" class="mb-2">Koleksi</a>
               </h6>
               <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series & TV Show</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series & Acara TV</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Film</a>
               </div>
             </div>
             <div class="col">
               <h6>
-                <a href="contact.php" class="mb-2">Contact Us</a>
+                <a href="contact.php" class="mb-2">Hubungi Kami</a>
               </h6>
               <div class="list-group list-group-flush">
                 <a href="https://wa.me/qr/ASA4SVPXMSIQC1" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">081222024097</a>

@@ -9,6 +9,47 @@ if (!(isset($_SESSION["login"]))) {
 require 'functions.php';
 $series = query("SELECT * FROM series");
 
+if (isset($_POST["judul_naik"])) {
+  $series = query("SELECT * FROM series ORDER BY judul_series ASC;");
+}
+
+if (isset($_POST["sutradara_naik"])) {
+  $series = query("SELECT * FROM series ORDER BY sutradara_series ASC;");
+}
+
+if (isset($_POST["aktor_naik"])) {
+  $series = query("SELECT * FROM series ORDER BY aktor_series ASC;");
+}
+
+if (isset($_POST["tahun_naik"])) {
+  $series = query("SELECT * FROM series ORDER BY tahun_rilis_series ASC;");
+}
+
+if (isset($_POST["studio_naik"])) {
+  $series = query("SELECT * FROM series ORDER BY studio_series ASC;");
+}
+
+if (isset($_POST["judul_turun"])) {
+  $series = query("SELECT * FROM series ORDER BY judul_series DESC;");
+}
+
+if (isset($_POST["sutradara_turun"])) {
+  $series = query("SELECT * FROM series ORDER BY sutradara_series DESC;");
+}
+
+if (isset($_POST["aktor_turun"])) {
+  $series = query("SELECT * FROM series ORDER BY aktor_series DESC;");
+}
+
+if (isset($_POST["tahun_turun"])) {
+  $series = query("SELECT * FROM series ORDER BY tahun_rilis_series DESC;");
+}
+
+if (isset($_POST["studio_turun"])) {
+  $series = query("SELECT * FROM series ORDER BY studio_series DESC;");
+}
+
+
 // tombol cari ditekan
 if (isset($_POST["cari_series"])) {
   $series = cari_series($_POST["keyword"]);
@@ -70,10 +111,10 @@ if (isset($_POST["cari_series"])) {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link active" href="index.php"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama</a
             >
-            <a class="nav-item nav-link" href="collection.php">Collection</a>
-            <a class="nav-item nav-link" href="contact.php">Contact</a>
+            <a class="nav-item nav-link" href="collection.php">Koleksi</a>
+            <a class="nav-item nav-link" href="contact.php">Kontak</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">logout</a>
           </div>
         </div>
@@ -89,20 +130,58 @@ if (isset($_POST["cari_series"])) {
             <h2 class="film-title text-center">Series</h2>
             
             <div class="row mb-3">
-              <div class="col-7">
-                <a href="tambah_series.php" class="btn btn-primary">Tambah Data Series</a>
-                <a href="cetak_series.php" target="_blank" class="btn btn-primary">Cetak PHP</a>
+            <div class="col-7">
+                  <div class="row mt-3">
+                    <a href="cetak_series.php" target="_blank" class="btn btn-outline-info btn-sm">Cetak PHP</a>
+                  </div>
+                  <div class="row mt-3">
+                    <a href="tambah.php" class="btn btn-outline-info btn-sm">Tambah Data Series</a>
+                  </div>
               </div>
-              <div class="col-5">
+              <div class="col-5 mt-3">
                 <form action="" method="POST">
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" name="keyword" size="40" 
-                    placeholder="Masukan keyword pencarian"
+                    autofocus placeholder="Masukan keyword pencarian" autocomplete="off"
                     aria-label="Recipient's username" aria-describedby="button-addon2"
                     id="keyword">
-                    <div class="input-group-append" >
-                      <button type="submit" name="cari_series" class="btn btn-info" 
-                      id="tombol-cari">Cari</button>
+                    <div class="input-group-append">
+                      <button type="submit" name="cari" class="btn btn-info" 
+                      id="button-addon2 tombol-cari">Cari</button>
+                    </div>
+                  </div>
+                </form>
+                <form action="" method="POST">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Urut Naik:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <button class="dropdown-item" type="submit" name="judul_naik">Judul</button>
+                          <button class="dropdown-item" type="submit" name="sutradara_naik">Sutradara</button>
+                          <button class="dropdown-item" type="submit" name="aktor_naik">Aktor</button>
+                          <button class="dropdown-item" type="submit" name="tahun_naik">Tahun</button>
+                          <button class="dropdown-item" type="submit" name="studio_naik">Studio</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-9">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Urut Turun:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <button class="dropdown-item" type="submit" name="judul_turun">Judul</button>
+                          <button class="dropdown-item" type="submit" name="sutradara_turun">Sutradara</button>
+                          <button class="dropdown-item" type="submit" name="aktor_turun">Aktor</button>
+                          <button class="dropdown-item" type="submit" name="tahun_turun">Tahun</button>
+                          <button class="dropdown-item" type="submit" name="studio_turun">Studio</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -119,7 +198,8 @@ if (isset($_POST["cari_series"])) {
                     <th scope="col">Judul</th>
                     <th scope="col">Sutradara</th>
                     <th scope="col">Aktor</th>
-                    <th scope="col">Link</th>
+                    <th scope="col">Tahun Rilis</th>
+                    <th scope="col">Studio</th>
                     <th scope="col" class="aksi">Aksi</th>
                   </tr>
                 </thead>
@@ -134,10 +214,12 @@ if (isset($_POST["cari_series"])) {
                       <td class="align-middle"><?php echo $seri["judul_series"]; ?></td>
                       <td class="align-middle"><?php echo $seri["sutradara_series"]; ?></td>
                       <td class="align-middle"><?php echo $seri["aktor_series"]; ?></td>
-                      <td class="align-middle"><?php echo $seri["link_series"]; ?></td>
+                      <td class="align-middle"><?php echo $seri["tahun_rilis_series"]; ?></td>
+                      <td class="align-middle"><?php echo $seri["studio_series"]; ?></td>
                       <td class="align-middle aksi">
-                        <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge bg-warning">Ubah</a> |
-                        <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
+                        <a href="<?php echo $seri["link_series"]; ?>" class="btn badge btn-outline-success btn-block">Tonton</a>
+                        <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge btn-outline-warning btn-block">Ubah</a>
+                        <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge btn-outline-danger btn-block" onclick="return confirm('yakin?');">Hapus</a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -146,7 +228,7 @@ if (isset($_POST["cari_series"])) {
             </div>
             <!-- Akhir Input Data Movie -->
 
-            <a href="collection.php" class="btn btn-primary">Kembali</a>
+            <a href="collection.php" class="btn btn-outline-info">Kembali</a>
             
           </div>
         </div>
@@ -176,7 +258,7 @@ if (isset($_POST["cari_series"])) {
                 <div class="row">
                   <div class="col">
                     <h6 >
-                      <a href="collection.php" class="mb-2">Collection</a>
+                      <a href="collection.php" class="mb-2">Koleksi</a>
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="film.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Film</a>
@@ -186,7 +268,7 @@ if (isset($_POST["cari_series"])) {
       
                   <div class="col">
                     <h6>
-                      <a href="contact.php" class="mb-2">Contact Us</a>
+                      <a href="contact.php" class="mb-2">Hubungi Kami</a>
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">081222024097</a>

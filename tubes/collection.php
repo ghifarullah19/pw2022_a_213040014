@@ -41,7 +41,7 @@ AND id_series <= 3;");
     <!-- icon -->
     <link rel="icon" href="img/logo.jpg" />
 
-    <title>Collection | Cloud Cinema</title>
+    <title>Koleksi | Cloud Cinema</title>
   </head>
   <body>
     <!-- navbar -->
@@ -64,10 +64,10 @@ AND id_series <= 3;");
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="index.php"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama</a
             >
-            <a class="nav-item nav-link active" href="#collection">Collection</a>
-            <a class="nav-item nav-link" href="contact.php">Contact</a>
+            <a class="nav-item nav-link active" href="#collection">Koleksi</a>
+            <a class="nav-item nav-link" href="contact.php">Kontak</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
@@ -80,7 +80,7 @@ AND id_series <= 3;");
       <section id="menu">
         <div class="menu">
           <div class="container">
-            <h2 class="menu-title text-center">Collection</h2>
+            <h2 class="menu-title text-center">Koleksi</h2>
             
             <!-- Film -->
             <h2 class="side-title"><a href="film.php">Film</a></h2>
@@ -138,17 +138,17 @@ AND id_series <= 3;");
           <div class="row">
             <div class="col">
               <h6 >
-                <a href="index.php" class="mb-2">Home</a>
+                <a href="index.php" class="mb-2">Utama</a>
               </h6>
               <div class="list-group list-group-flush">
-                <a href="index.php#about" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">About</a>
-                <a href="index.php#highlight" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Highlight</a>
+                <a href="index.php#about" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Tentang</a>
+                <a href="index.php#highlight" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Sorotan</a>
               </div>
             </div>
 
             <div class="col">
               <h6>
-                <a href="contact.php" class="mb-2">Contact Us</a>
+                <a href="contact.php" class="mb-2">Hubungi Kami</a>
               </h6>
               <div class="list-group list-group-flush">
                 <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">081222024097</a>

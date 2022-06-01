@@ -34,7 +34,7 @@ if (!(isset($_SESSION["login"]))) {
     <!-- icon -->
     <link rel="icon" href="img/logo.jpg" />
 
-    <title>Contact US | Cloud Cinema</title>
+    <title>Hubungi Kami | Cloud Cinema</title>
   </head>
   <body>
     <!-- navbar -->
@@ -57,10 +57,9 @@ if (!(isset($_SESSION["login"]))) {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="index.php"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama<span class="sr-only">(current)</span></a
             >
-            <a class="nav-item nav-link" href="collection.php">Collection</a>
-            <a class="nav-item nav-link active" href="#contact">Contact</a>
+            <a class="nav-item nav-link" href="collection.php">Koleksi</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
@@ -72,7 +71,7 @@ if (!(isset($_SESSION["login"]))) {
     <section id="contact">
         <div class="contact">
             <div class="container">
-                <h2 class="contact-title">Contact US</h2>
+                <h2 class="contact-title">Hubungi Kami</h2>
                 <div class="alert alert-success alert-dismissible fade show d-none" role="alert">
                     <strong>Terima Kasih!</strong> Pesan anda sudah kami terima.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -108,8 +107,8 @@ if (!(isset($_SESSION["login"]))) {
                     name="pesan"
                     ></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-kirim">Submit</button>
-                <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                <button type="submit" class="btn btn-outline-primary btn-kirim">Kirim</button>
+                <button class="btn btn-outline-primary btn-loading d-none" type="button" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Loading...
                   </button>
@@ -141,16 +140,16 @@ if (!(isset($_SESSION["login"]))) {
           <div class="row">
             <div class="col">
                 <h6 >
-                  <a href="collection.php" class="mb-2">Collection</a>
+                  <a href="collection.php" class="mb-2">Koleksi</a>
                 </h6>
                 <div class="list-group list-group-flush">
                   <a href="film.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Film</a>
-                  <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series</a>
+                  <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series & Acara TV</a>
                 </div>
               </div>
             <div class="col">
               <h6>
-                <a href="index.php" class="mb-2">Home</a>
+                <a href="index.php" class="mb-2">Utama</a>
               </h6>
             </div>
           </div>

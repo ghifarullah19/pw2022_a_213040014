@@ -73,10 +73,10 @@ if (isset($_POST["kembali"])) {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link active" href="index.php"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama</a
             >
-            <a class="nav-item nav-link" href="menu.php">Menu</a>
-            <a class="nav-item nav-link" href="contact.php">Contact</a>
+            <a class="nav-item nav-link" href="collection.php">Koleksi</a>
+            <a class="nav-item nav-link" href="contact.php">Kontak</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
@@ -112,6 +112,11 @@ if (isset($_POST["kembali"])) {
               </div>
               
               <div class="mb-3">
+                <label for="link_movie" class="form-label">Link</label>
+                <input type="text" class="form-control" id="link_movie" name="link_movie">
+              </div>
+              
+              <div class="mb-3">
                 <label for="tahun_rilis_movie" class="form-label">Tahun Rilis</label>
                 <input type="number" class="form-control" id="tahun_rilis_movie" name="tahun_rilis_movie" 
                 maxlength="4" placeholder="Contoh: 2022">
@@ -135,8 +140,8 @@ if (isset($_POST["kembali"])) {
                   </div>
               </div>
 
-              <button type="submit" class="btn btn-primary" name="tambah">Tambah Data Film</button>
-              <button type="submit" class="btn btn-primary" name="kembali">Kembali ke Data Film</button>
+              <button type="submit" class="btn btn-outline-success" name="tambah">Tambah Data Film</button>
+              <button type="submit" class="btn btn-outline-danger" name="kembali">Kembali ke Data Film</button>
               
             </form>
             <!-- Akhir Input Data Movie -->
@@ -169,17 +174,17 @@ if (isset($_POST["kembali"])) {
                 <div class="row">
                   <div class="col">
                     <h6 >
-                      <a href="menu.php" class="mb-2">Collection</a>
+                      <a href="menu.php" class="mb-2">Koleksi</a>
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="film.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Film</a>
-                      <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series</a>
+                      <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series & Acara TV</a>
                     </div>
                   </div>
                         
                   <div class="col">
                     <h6>
-                      <a href="contact.php" class="mb-2">Contact Us</a>
+                      <a href="contact.php" class="mb-2">Hubungi Kami</a>
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">081222024097</a>

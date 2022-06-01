@@ -13,24 +13,40 @@ if (isset($_POST["judul_naik"])) {
   $movie = query("SELECT * FROM movie ORDER BY judul_movie ASC;");
 }
 
+if (isset($_POST["sutradara_naik"])) {
+  $movie = query("SELECT * FROM movie ORDER BY sutradara_movie ASC;");
+}
+
+if (isset($_POST["aktor_naik"])) {
+  $movie = query("SELECT * FROM movie ORDER BY aktor_movie ASC;");
+}
+
 if (isset($_POST["tahun_naik"])) {
   $movie = query("SELECT * FROM movie ORDER BY tahun_rilis_movie ASC;");
 }
 
-if (isset($_POST["sutradara_naik"])) {
-  $movie = query("SELECT * FROM movie ORDER BY sutradara_movie ASC;");
+if (isset($_POST["studio_naik"])) {
+  $movie = query("SELECT * FROM movie ORDER BY studio_movie ASC;");
 }
 
 if (isset($_POST["judul_turun"])) {
   $movie = query("SELECT * FROM movie ORDER BY judul_movie DESC;");
 }
 
+if (isset($_POST["sutradara_turun"])) {
+  $movie = query("SELECT * FROM movie ORDER BY sutradara_movie DESC;");
+}
+
+if (isset($_POST["aktor_turun"])) {
+  $movie = query("SELECT * FROM movie ORDER BY aktor_movie DESC;");
+}
+
 if (isset($_POST["tahun_turun"])) {
   $movie = query("SELECT * FROM movie ORDER BY tahun_rilis_movie DESC;");
 }
 
-if (isset($_POST["sutradara_turun"])) {
-  $movie = query("SELECT * FROM movie ORDER BY sutradara_movie DESC;");
+if (isset($_POST["studio_turun"])) {
+  $movie = query("SELECT * FROM movie ORDER BY studio_movie DESC;");
 }
 
 // tombol cari ditekan
@@ -95,10 +111,10 @@ if (isset($_POST["cari"])) {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link active" href="index.php"
-              >Home <span class="sr-only">(current)</span></a
+              >Utama</a
             >
-            <a class="nav-item nav-link" href="collection.php">Collection</a>
-            <a class="nav-item nav-link" href="contact.php">Contact</a>
+            <a class="nav-item nav-link" href="collection.php">Koleksi</a>
+            <a class="nav-item nav-link" href="contact.php">Kontak</a>
             <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
           </div>
         </div>
@@ -115,40 +131,14 @@ if (isset($_POST["cari"])) {
             
             <div class="row mb-3">
               <div class="col-7">
-                <a href="tambah.php" class="btn btn-primary btn-sm">Tambah Data Film</a>
-                <a href="cetak_film.php" target="_blank" class="btn btn-primary btn-sm">Cetak PHP</a>
-                <form action="" method="POST">
-                  <div class="row">
-                    <div class="col-2">
-                      <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Urut Naik:
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <button class="dropdown-item" type="submit" name="judul_naik">Judul</button>
-                          <button class="dropdown-item" type="submit" name="tahun_naik">Tahun</button>
-                          <button class="dropdown-item" type="submit" name="sutradara_naik">Sutradara</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-8">
-                      <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Urut Turun:
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <button class="dropdown-item" type="submit" name="judul_turun">Judul</button>
-                          <button class="dropdown-item" type="submit" name="tahun_turun">Tahun</button>
-                          <button class="dropdown-item" type="submit" name="sutradara_turun">Sutradara</button>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="row mt-3">
+                    <a href="cetak_film.php" target="_blank" class="btn btn-outline-info btn-sm">Cetak PHP</a>
                   </div>
-                </form>
+                  <div class="row mt-3">
+                    <a href="tambah.php" class="btn btn-outline-info btn-sm">Tambah Data Film</a>
+                  </div>
               </div>
-              <div class="col-5">
+              <div class="col-5 mt-3">
                 <form action="" method="POST">
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" name="keyword" size="40" 
@@ -158,6 +148,40 @@ if (isset($_POST["cari"])) {
                     <div class="input-group-append">
                       <button type="submit" name="cari" class="btn btn-info" 
                       id="button-addon2 tombol-cari">Cari</button>
+                    </div>
+                  </div>
+                </form>
+                <form action="" method="POST">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Urut Naik:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <button class="dropdown-item" type="submit" name="judul_naik">Judul</button>
+                          <button class="dropdown-item" type="submit" name="sutradara_naik">Sutradara</button>
+                          <button class="dropdown-item" type="submit" name="aktor_naik">Aktor</button>
+                          <button class="dropdown-item" type="submit" name="tahun_naik">Tahun</button>
+                          <button class="dropdown-item" type="submit" name="studio_naik">Studio</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-9">
+                      <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle btn-sm" type="submit" id="dropdownMenuButton" 
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Urut Turun:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <button class="dropdown-item" type="submit" name="judul_turun">Judul</button>
+                          <button class="dropdown-item" type="submit" name="sutradara_turun">Sutradara</button>
+                          <button class="dropdown-item" type="submit" name="aktor_turun">Aktor</button>
+                          <button class="dropdown-item" type="submit" name="tahun_turun">Tahun</button>
+                          <button class="dropdown-item" type="submit" name="studio_turun">Studio</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -193,10 +217,10 @@ if (isset($_POST["cari"])) {
                       <td class="align-middle"><?php echo $mov["tahun_rilis_movie"]; ?></td>
                       <td class="align-middle"><?php echo $mov["studio_movie"]; ?></td>
                       <td class="align-middle" class="aksi">
-                        <a href="<?= $mov["link_movie"]; ?>" target="_blank" class="btn badge btn-block text-success btn-outline-success
+                        <a href="<?= $mov["link_movie"]; ?>" target="_blank" class="btn badge btn-block btn-outline-success
                         ">Tonton</a>
-                        <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block text-warning btn-outline-warning">Ubah</a>
-                        <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block text-danger btn-outline-danger" onclick="return confirm('yakin?');">Hapus</a>
+                        <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-warning">Ubah</a>
+                        <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-danger" onclick="return confirm('yakin?');">Hapus</a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -205,7 +229,7 @@ if (isset($_POST["cari"])) {
             </div>
             <!-- Akhir Input Data Movie -->
 
-            <a href="collection.php" class="btn btn-primary">Kembali</a>
+            <a href="collection.php" class="btn btn-outline-info">Kembali</a>
           </div>
         </div>
       </section>
@@ -234,17 +258,17 @@ if (isset($_POST["cari"])) {
                 <div class="row">
                   <div class="col">
                     <h6 >
-                      <a href="collection.php" class="mb-2">Collection</a>
+                      <a href="collection.php" class="mb-2">Koleksi</a>
                     </h6>
                     <div class="list-group list-group-flush">
-                      <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series</a>
+                      <a href="series.php" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">Series & Acara TV</a>
                     </div>
                   </div>
                   
       
                   <div class="col">
                     <h6>
-                      <a href="contact.php" class="mb-2">Contact Us</a>
+                      <a href="contact.php" class="mb-2">Hubungi Kami</a>
                     </h6>
                     <div class="list-group list-group-flush">
                       <a href="#" class="list-group-item list-group-item-action bg-transparent border-0 text-white px-0">081222024097</a>
