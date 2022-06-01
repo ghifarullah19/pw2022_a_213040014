@@ -88,10 +88,11 @@ if (isset($_POST["cari"])) {
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" name="keyword" size="40" 
                     autofocus placeholder="Masukan keyword pencarian" autocomplete="off"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                    aria-label="Recipient's username" aria-describedby="button-addon2"
+                    id="keyword">
                     <div class="input-group-append">
                       <button type="submit" name="cari" class="btn btn-info" 
-                      type="button" id="button-addon2">Cari</button>
+                      type="button" id="button-addon2 tombol-cari">Cari</button>
                     </div>
                   </div>
                 </form>
@@ -99,38 +100,40 @@ if (isset($_POST["cari"])) {
             </div>
             
             <!-- Input Data Movie -->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Gambar</th>
-                  <th scope="col">Judul</th>
-                  <th scope="col">Sutradara</th>
-                  <th scope="col">Aktor</th>
-                  <th scope="col">Link</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1; ?>
-                <?php foreach ($movie as $mov) { ?>
-                  <tr class="align-middle">
-                    <th scope="row"><?php echo $no++; ?></th>
-                    <td>
-                      <img src="img/<?php echo $mov["gambar_movie"]; ?>" width="100">
-                    </td>
-                    <td class="align-middle"><?php echo $mov["judul_movie"]; ?></td>
-                    <td class="align-middle"><?php echo $mov["sutradara_movie"]; ?></td>
-                    <td class="align-middle"><?php echo $mov["aktor_movie"]; ?></td>
-                    <td class="align-middle"><?php echo $mov["link_movie"]; ?></td>
-                    <td class="align-middle">
-                      <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-warning">Ubah</a> |
-                      <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
-                    </td>
+            <div id="container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Gambar</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Sutradara</th>
+                    <th scope="col">Aktor</th>
+                    <th scope="col">Link</th>
+                    <th scope="col">Aksi</th>
                   </tr>
-                <?php } ?>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <?php $no = 1; ?>
+                  <?php foreach ($movie as $mov) { ?>
+                    <tr class="align-middle">
+                      <th scope="row"><?php echo $no++; ?></th>
+                      <td>
+                        <img src="img/<?php echo $mov["gambar_movie"]; ?>" width="100">
+                      </td>
+                      <td class="align-middle"><?php echo $mov["judul_movie"]; ?></td>
+                      <td class="align-middle"><?php echo $mov["sutradara_movie"]; ?></td>
+                      <td class="align-middle"><?php echo $mov["aktor_movie"]; ?></td>
+                      <td class="align-middle"><?php echo $mov["link_movie"]; ?></td>
+                      <td class="align-middle">
+                        <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-warning">Ubah</a> |
+                        <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
             <!-- Akhir Input Data Movie -->
 
             <a href="collection.php" class="btn btn-primary">Kembali</a>
@@ -202,6 +205,10 @@ if (isset($_POST["cari"])) {
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+  
+    <!-- My JS -->
+  <script src="js/film.js"></script>
+  
   </body>
 </html>
 

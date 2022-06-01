@@ -89,10 +89,11 @@ if (isset($_POST["cari_series"])) {
                   <div class="input-group mb-3">
                     <input type="text" class="form-control" name="keyword" size="40" 
                     placeholder="Masukan keyword pencarian"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                    aria-label="Recipient's username" aria-describedby="button-addon2"
+                    id="keyword">
                     <div class="input-group-append" >
                       <button type="submit" name="cari_series" class="btn btn-info" 
-                      >Cari</button>
+                      id="tombol-cari">Cari</button>
                     </div>
                   </div>
                 </form>
@@ -100,61 +101,44 @@ if (isset($_POST["cari_series"])) {
             </div>
             
             <!-- Input Data Movie -->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Gambar</th>
-                  <th scope="col">Judul</th>
-                  <th scope="col">Sutradara</th>
-                  <th scope="col">Aktor</th>
-                  <th scope="col">Link</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $no = 1; ?>
-                <?php foreach ($series as $seri) { ?>
-                  <tr class="align-middle">
-                    <th scope="row"><?php echo $no++; ?></th>
-                    <td>
-                      <img src="img/<?php echo $seri["gambar_series"]; ?>" width="100">
-                    </td>
-                    <td class="align-middle"><?php echo $seri["judul_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["sutradara_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["aktor_series"]; ?></td>
-                    <td class="align-middle"><?php echo $seri["link_series"]; ?></td>
-                    <td class="align-middle">
-                      <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge bg-warning">Ubah</a> |
-                      <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
-                    </td>
+            <div id="container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Gambar</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Sutradara</th>
+                    <th scope="col">Aktor</th>
+                    <th scope="col">Link</th>
+                    <th scope="col">Aksi</th>
                   </tr>
-                <?php } ?>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <?php $no = 1; ?>
+                  <?php foreach ($series as $seri) { ?>
+                    <tr class="align-middle">
+                      <th scope="row"><?php echo $no++; ?></th>
+                      <td>
+                        <img src="img/<?php echo $seri["gambar_series"]; ?>" width="100">
+                      </td>
+                      <td class="align-middle"><?php echo $seri["judul_series"]; ?></td>
+                      <td class="align-middle"><?php echo $seri["sutradara_series"]; ?></td>
+                      <td class="align-middle"><?php echo $seri["aktor_series"]; ?></td>
+                      <td class="align-middle"><?php echo $seri["link_series"]; ?></td>
+                      <td class="align-middle">
+                        <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge bg-warning">Ubah</a> |
+                        <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
             <!-- Akhir Input Data Movie -->
 
             <a href="collection.php" class="btn btn-primary">Kembali</a>
             
-            <!--
-            <?php foreach ($movie as $mov) { ?>
-              <div class="card-deck">
-                <div class="card">
-                  <div class="row">
-                    <div class="col-md-2">
-                      <img class="card-img-top" src="img/<?php echo $mov["gambar_movie"]; ?>" alt="Card image cap">
-                    </div>
-                    <div class="col-md-10">
-                      <div class="card-body">
-                        <h5 class="card-title"><?php echo $mov["judul_movie"]; ?></h5>
-                        <p class="card-text"><?php echo $mov["sutradara_movie"]; ?></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>  
-              </div>
-            <?php } ?>
-            -->
           </div>
         </div>
       </section>
@@ -223,6 +207,11 @@ if (isset($_POST["cari_series"])) {
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+
+
+  <!-- My JS -->
+  <script src="js/series.js"></script>
+
   </body>
 </html>
 
