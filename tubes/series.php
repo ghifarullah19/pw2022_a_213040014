@@ -39,6 +39,14 @@ if (isset($_POST["cari_series"])) {
     <!-- icon -->
     <link rel="icon" href="img/logo.jpg" />
 
+    <style>
+      @media print {
+        .btn, .input-group, .footer, .aksi {
+          display: none;
+        }
+      }
+    </style>
+
     <title>Cloud Cinema</title>
   </head>
   <body>
@@ -83,6 +91,7 @@ if (isset($_POST["cari_series"])) {
             <div class="row mb-3">
               <div class="col-7">
                 <a href="tambah_series.php" class="btn btn-primary">Tambah Data Series</a>
+                <a href="cetak_series.php" target="_blank" class="btn btn-primary">Cetak PHP</a>
               </div>
               <div class="col-5">
                 <form action="" method="POST">
@@ -111,7 +120,7 @@ if (isset($_POST["cari_series"])) {
                     <th scope="col">Sutradara</th>
                     <th scope="col">Aktor</th>
                     <th scope="col">Link</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" class="aksi">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -126,7 +135,7 @@ if (isset($_POST["cari_series"])) {
                       <td class="align-middle"><?php echo $seri["sutradara_series"]; ?></td>
                       <td class="align-middle"><?php echo $seri["aktor_series"]; ?></td>
                       <td class="align-middle"><?php echo $seri["link_series"]; ?></td>
-                      <td class="align-middle">
+                      <td class="align-middle aksi">
                         <a href="ubah_series.php?id_series=<?= $seri["id_series"]; ?>" class="btn badge bg-warning">Ubah</a> |
                         <a href="hapus_series.php?id=<?= $seri["id_series"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
                       </td>
@@ -145,7 +154,7 @@ if (isset($_POST["cari_series"])) {
       <!-- akhir collection -->
       
         <!-- footer -->
-        <footer class="bt-footer bg-dark position-relative text-white p-4 p-lg-5">
+        <footer class="footer bt-footer bg-dark position-relative text-white p-4 p-lg-5">
             <div class="row">
               <div class="col">
                 <img src="img/logo.jpg" class="img-fluid mb-4 rounded-circle" width="100">

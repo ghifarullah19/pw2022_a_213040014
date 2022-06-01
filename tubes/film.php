@@ -38,6 +38,14 @@ if (isset($_POST["cari"])) {
     <!-- icon -->
     <link rel="icon" href="img/logo.jpg" />
 
+    <style>
+      @media print {
+        .btn, .input-group, .footer, .aksi {
+          display: none;
+        }
+      }
+    </style>
+
     <title>Cloud Cinema</title>
   </head>
   <body>
@@ -77,11 +85,12 @@ if (isset($_POST["cari"])) {
       <section id="film-1">
         <div class="film-1">
           <div class="container">
-            <h2 class="film-title text-center">Film</h2>
+            <h2 class="film-title text-center kelas">Film</h2>
             
             <div class="row mb-3">
               <div class="col-7">
                 <a href="tambah.php" class="btn btn-primary">Tambah Data Film</a>
+                <a href="cetak_film.php" target="_blank" class="btn btn-primary">Cetak PHP</a>
               </div>
               <div class="col-5">
                 <form action="" method="POST">
@@ -110,7 +119,7 @@ if (isset($_POST["cari"])) {
                     <th scope="col">Sutradara</th>
                     <th scope="col">Aktor</th>
                     <th scope="col">Link</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" class="aksi">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -125,7 +134,7 @@ if (isset($_POST["cari"])) {
                       <td class="align-middle"><?php echo $mov["sutradara_movie"]; ?></td>
                       <td class="align-middle"><?php echo $mov["aktor_movie"]; ?></td>
                       <td class="align-middle"><?php echo $mov["link_movie"]; ?></td>
-                      <td class="align-middle">
+                      <td class="align-middle" class="aksi">
                         <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-warning">Ubah</a> |
                         <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge bg-danger" onclick="return confirm('yakin?');">Hapus</a>
                       </td>
@@ -143,7 +152,7 @@ if (isset($_POST["cari"])) {
       <!-- akhir collection -->
       
         <!-- footer -->
-        <footer class="bt-footer bg-dark position-relative text-white p-4 p-lg-5">
+        <footer class="footer bt-footer bg-dark position-relative text-white p-4 p-lg-5">
             <div class="row">
               <div class="col">
                 <img src="img/logo.jpg" class="img-fluid mb-4 rounded-circle" width="100">
