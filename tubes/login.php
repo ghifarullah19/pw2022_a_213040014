@@ -25,7 +25,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 }
 
 if (isset($_SESSION['login'])) {
-  header("Location: index.php");
+  header("Location: admin/admin-collection.php");
   exit;
 }
 
@@ -54,7 +54,7 @@ if (isset($_POST["login"])) {
         setcookie('id', $row['id'], time() + 60);
         setcookie('key', hash('sha256', $row['username']), time() + 60);
       }
-      header("Location: index.php");
+      header("Location: admin/admin-collection.php");
       exit;
     }
 
@@ -76,6 +76,8 @@ if (isset($_POST["login"])) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="style/style.css">
+
     <link rel="icon" href="img/logo.jpg" />
 
     <title>Halaman Login</title>
@@ -90,7 +92,7 @@ if (isset($_POST["login"])) {
 
   <div class="container">
     <div class="card border-primary mx-auto rounded" 
-    style="max-width: 32rem; height: 28rem; margin-top: 100px;
+    style="max-width: 32rem; height: 28rem; margin-top: 90px;
     /*box-shadow: 10px 10px #888888;*/"
     >
       <div class="card-header bg-transparent border-primary">
@@ -113,13 +115,18 @@ if (isset($_POST["login"])) {
             <label for="remember" class="form-check-label">Remember me</label>
           </div>
           <div class="form-group">
-            <button type="submit" name="login" class="btn btn-info mx-auto col">LOGIN</button>
+            <button type="submit" name="login" class="btn btn-info col" style="margin-bottom: -30px;">LOGIN</button>
           </div>
         </form>
       </div>
       <div class="card-footer bg-transparent border-primary" style="height: 4rem;">
         <div class="row">
-          <a href="registrasi.php" class="text-center col text-primary">Silahkan Registrasi</a>
+          <div class="col">
+            <a href="registrasi.php" class="btn btn-outline-info col">Silahkan Registrasi</a>
+          </div>
+          <div class="col">
+            <a href="index.php" class="btn btn-outline-secondary col">Kembali</a>
+          </div>
         </div>
       </div>
     </div>

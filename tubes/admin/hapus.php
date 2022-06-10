@@ -1,28 +1,27 @@
 <?php 
 session_start();
 
-require 'functions.php';
-
+require '../functions.php';
 
 if (!(isset($_SESSION["login"]))) {
-  header("Location: login.php");
+  header("Location: ../login.php");
   exit;
 }
 
-$id_series = $_GET["id"];
+$id_movie = $_GET["id"];
 
-if (hapus_series($id_series) > 0) {
+if (hapus($id_movie) > 0) {
   echo "
       <script>
         alert('Data Berhasil Dihapus!');
-        document.location.href = 'series.php';
+        document.location.href = 'admin-film.php';
       </script>
     ";
 } else {
   echo "
       <script>
         alert('Data Gagal Dihapus!');
-        document.location.href = 'series.php';
+        document.location.href = 'admin-film.php';
       </script>
     ";
 }

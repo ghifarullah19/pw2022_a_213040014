@@ -1,10 +1,6 @@
 <?php 
 session_start();
 
-if (!(isset($_SESSION["login"]))) {
-  header("Location: login.php");
-  exit;
-}
 require 'functions.php';
 
 $movie = query("SELECT * FROM movie");
@@ -115,7 +111,7 @@ if (isset($_POST["cari"])) {
             >
             <a class="nav-item nav-link" href="collection.php">Koleksi</a>
             <a class="nav-item nav-link" href="contact.php">Kontak</a>
-            <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
+            <a class="nav-item btn btn-primary tombol" href="login.php">Login</a>
           </div>
         </div>
       </div>
@@ -130,13 +126,8 @@ if (isset($_POST["cari"])) {
             <h2 class="film-title text-center kelas">Film</h2>
             
             <div class="row mb-3">
-              <div class="col-7">
-                  <div class="row mt-3">
-                    <a href="cetak_film.php" target="_blank" class="btn btn-outline-info btn-sm">Cetak PHP</a>
-                  </div>
-                  <div class="row mt-3">
-                    <a href="tambah.php" class="btn btn-outline-info btn-sm">Tambah Data Film</a>
-                  </div>
+              <div class="col-7 mt-3">  
+                <a href="collection.php" class="btn btn-outline-info">Kembali</a>
               </div>
               <div class="col-5 mt-3">
                 <form action="" method="POST">
@@ -219,8 +210,7 @@ if (isset($_POST["cari"])) {
                       <td class="align-middle" class="aksi">
                         <a href="<?= $mov["link_movie"]; ?>" target="_blank" class="btn badge btn-block btn-outline-success
                         ">Tonton</a>
-                        <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-warning">Ubah</a>
-                        <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-danger" onclick="return confirm('yakin?');">Hapus</a>
+                        <a href="detail.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-warning">Detail</a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -228,8 +218,6 @@ if (isset($_POST["cari"])) {
               </table>
             </div>
             <!-- Akhir Input Data Movie -->
-
-            <a href="collection.php" class="btn btn-outline-info">Kembali</a>
           </div>
         </div>
       </section>
@@ -304,5 +292,3 @@ if (isset($_POST["cari"])) {
   
   </body>
 </html>
-
-

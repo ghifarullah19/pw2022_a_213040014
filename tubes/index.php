@@ -3,11 +3,6 @@ session_start();
 
 require 'functions.php';
 
-if (!(isset($_SESSION["login"]))) {
-  header("Location: login.php");
-  exit;
-}
-
 $movie_series_terbaik = query("SELECT * 
 FROM movie
 NATURAL JOIN series
@@ -34,8 +29,10 @@ AND id_series <= 2");
       crossorigin="anonymous"
     />
 
-    <!-- AOS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Bootstrap CSS v.5.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" 
+    crossorigin="anonymous">
 
     <!-- My CSS -->
     <link rel="stylesheet" href="style/style.css" />
@@ -72,7 +69,7 @@ AND id_series <= 2");
             <a class="nav-item nav-link" href="#highlight">Sorotan</a>
             <a class="nav-item nav-link" href="collection.php">Koleksi</a>
             <a class="nav-item nav-link" href="contact.php">Kontak</a>
-            <a class="nav-item btn btn-primary tombol" href="logout.php">Logout</a>
+            <a class="nav-item btn btn-primary tombol" href="login.php">Login</a>
           </div>
         </div>
       </div>
@@ -84,10 +81,12 @@ AND id_series <= 2");
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <div class="img-profile-logo">
-          <img src="img/logo.jpg" class="rounded-circle" alt="">
+          <img src="img/logo.jpg" class="rounded-circle" alt="" style="margin-bottom: -30px;">
         </div>
         <h1 class="display-4">Cloud Cinema</h1>
         <p class="lead">Stream Series & Film</p>
+        <p class="mt-3 fs-6 text-light fst-italic">Tertarik menjadi admin? <a href="registrasi.php" class="text-decoration-none text-white 
+        fw-bold">Klik Disini!</a></p>
       </div>
     </div>
   </section>
@@ -232,7 +231,11 @@ AND id_series <= 2");
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
     ></script>
-    <script
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" 
+    crossorigin="anonymous">
+    </script>
+    <!-- <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
       integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
       crossorigin="anonymous"
@@ -241,13 +244,7 @@ AND id_series <= 2");
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
-    ></script>
-
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
+    ></script> -->
   
   </body>
 </html>

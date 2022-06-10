@@ -1,9 +1,9 @@
 <?php 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 // require_once 'dompdf/autoload.inc.php';
 
-require 'functions.php';
+require '../functions.php';
 $series = query("SELECT * FROM series");
 
 // reference the Dompdf namespace

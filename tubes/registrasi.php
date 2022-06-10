@@ -59,13 +59,19 @@ if (isset($_POST["register"])) {
             class="form-control font-italic" placeholder="Konfirmasi password">
           </div>
           <div class="form-group">
-            <button type="submit" name="register" class="btn btn-info mx-auto col mt-2">REGISTRASI</button>
+            <button type="submit" name="register" class="btn btn-info mx-auto col mt-2"
+            style="margin-bottom: -20px;">REGISTRASI</button>
           </div>
         </form>
       </div>
       <div class="card-footer bg-transparent border-primary" style="height: 4rem;">
         <div class="row">
-          <a href="login.php" class="text-center col text-primary">Kembali ke Halaman Login</a>
+          <div class="col">
+            <a href="login.php" class="btn btn-outline-info col">Login</a>
+          </div>
+          <div class="col">
+            <a href="index.php" class="btn btn-outline-secondary col">Kembali</a>
+          </div>
         </div>
       </div>
     </div>

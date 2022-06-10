@@ -1,5 +1,5 @@
 <?php 
-require '../functions.php';
+require '../../functions.php';
 
 $keyword = $_GET["keyword"];
 
@@ -15,8 +15,8 @@ studio_movie LIKE '%$keyword%'";
 
 $movie_series = query($query);
 
-?>
-
+?>  
+    
 <!-- Input Data Movie -->
 <div id="container">
   <table class="table">
@@ -38,7 +38,7 @@ $movie_series = query($query);
         <tr class="align-middle">
           <th scope="row"><?php echo $no++; ?></th>
           <td>
-            <img src="img/<?php echo $mov["gambar_movie"]; ?>" width="100">
+            <img src="../img/<?php echo $mov["gambar_movie"]; ?>" width="100">
           </td>
           <td class="align-middle"><?php echo $mov["judul_movie"]; ?></td>
           <td class="align-middle"><?php echo $mov["sutradara_movie"]; ?></td>
@@ -48,7 +48,9 @@ $movie_series = query($query);
           <td class="align-middle" class="aksi">
             <a href="<?= $mov["link_movie"]; ?>" target="_blank" class="btn badge btn-block btn-outline-success
             ">Tonton</a>
-            <a href="detail.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-warning">Detail</a>
+            <a href="ubah.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-warning">Ubah</a>
+            <a href="hapus.php?id=<?= $mov["id_movie"]; ?>" class="btn badge btn-block btn-outline-danger" 
+            onclick="return confirm('Apakah anda yakin ingin menghapus data ini?');">Hapus</a>
           </td>
         </tr>
       <?php } ?>

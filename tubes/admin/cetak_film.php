@@ -1,9 +1,9 @@
 <?php 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 // require_once 'dompdf/autoload.inc.php';
 
-require 'functions.php';
+require '../functions.php';
 $movie = query("SELECT * FROM movie");
 
 // reference the Dompdf namespace
