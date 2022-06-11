@@ -77,7 +77,7 @@ function upload() {
   }
 
   // cek jika ukurannya terlalu besar 
-  if ($ukuranFile > 5000000) {
+  if ($ukuranFile > 2000000) {
     echo "<script>
           alert('Ukuran gambar terlalu besar!');
           </script>
@@ -91,7 +91,7 @@ function upload() {
   $namaFileBaru .= ".";
   $namaFileBaru .= $ekstensiGambar; 
 
-  move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+  move_uploaded_file($tmpName, '../img/' . $namaFileBaru);
   return $namaFileBaru;
 }
 

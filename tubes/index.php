@@ -96,10 +96,10 @@ AND id_series <= 2");
       <section id="about">
         <div class="container">
           <div class="about text-center">
-            <h2 class="about-title" data-aos="fade-down">Tentang Kami</h2>
+            <h2 class="about-title">Tentang Kami</h2>
             <div class="row">
               <div class="col">
-                <div class="about-lutfi w-100" data-aos="fade-up">
+                <div class="about-lutfi w-100">
                   <img
                     src="img/profile.png"
                     alt="lutfi"
@@ -118,7 +118,7 @@ AND id_series <= 2");
                 </div>
               </div>
               <div class="col">
-                <div class="about-us" data-aos="fade-up">
+                <div class="about-us">
                   <img
                     src="img/logo.jpg"
                     alt="cloud_cinema"
@@ -145,12 +145,12 @@ AND id_series <= 2");
       <section id="highlight">
         <div class="highlight ">
           <div class="container ">
-            <h2 class="highlight-title text-center" data-aos="fade-down">Sorotan</h2>
+            <h2 class="highlight-title text-center">Sorotan</h2>
             <div class="card-deck">
               <?php foreach ($movie_series_terbaik as $ms) { ?>
                 <div class="card mx-auto"  style="max-width: 250px;">
                   <img src="img/<?= $ms["gambar_movie"]; ?>" class="card-img-top" 
-                  alt="gambar-movie" data-aos="fade-right"/>
+                  alt="gambar-movie"/>
                   <div class="card-body">
                     <h5 class="card-title"><?= $ms["judul_movie"]; ?></h5>
                     <p>
@@ -162,7 +162,7 @@ AND id_series <= 2");
               <?php foreach ($movie_series_terbaik as $ss) { ?>
                 <div class="card mx-auto"  style="max-width: 250px;">
                   <img src="img/<?= $ss["gambar_series"]; ?>" class="card-img-top" 
-                  alt="gambar-series" data-aos="fade-right"/>
+                  alt="gambar-series"/>
                   <div class="card-body">
                     <h5 class="card-title"><?= $ss["judul_series"]; ?></h5>
                     <p>
